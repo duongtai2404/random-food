@@ -1,0 +1,27 @@
+.main-form {
+  padding: 100px 0 130px 0;
+  height: 100vh;
+}
+
+.container-form {
+  display: flex;
+  justify-content: center;
+}
+
+.form-auth {
+  margin-top: 100px;
+  width: 500px;
+}
+
+.form-input {
+  margin-bottom: 15px;
+}
+
+.valid:focus {
+  border-color: #3ed050 !important;
+  box-shadow: 0 0 0 0.25rem rgba(13, 226, 29, 0.25) !important;
+}
+
+.note {
+  margin-right: 15px;
+}

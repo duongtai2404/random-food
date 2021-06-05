@@ -1,6 +1,7 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 
@@ -17,6 +18,8 @@ const isAuth = require('./middlewares/isAuth');
 const foodGraud = require('./middlewares/FoodGruad');
 
 const app = express();
+
+app.use(cors());
 
 const URI =
   'mongodb+srv://admin:jVaUjy3ogKxrsDht@cluster0.so5tn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';

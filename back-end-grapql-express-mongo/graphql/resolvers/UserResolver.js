@@ -37,13 +37,13 @@ const userResolver = {
   login: async ({ email, password }) => {
     const user = await User.findOne({ email: email });
     if (!user) {
-      throw new Error({ error: 'Email does not exist!' });
+      throw new Error('Email does not exist!');
     }
 
     const isEqualPassword = bcrypt.compareSync(password, user.password);
 
     if (!isEqualPassword) {
-      throw new Error({ error: 'Password is not correct' });
+      throw new Error('Password is not correct');
     }
 
     const token = jwt.sign({ userId: user.id, email: email }, 'somesecretkey', {
