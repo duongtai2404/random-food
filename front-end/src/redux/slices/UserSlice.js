@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { grapqlApi } from '../../api/api-grapql';
+import { configureApiHeaderAuthen } from '../../api/api-grapql';
 
 const user = {
   userId: '',
@@ -16,24 +16,26 @@ export const userSlice = createSlice({
   reducers: {
     login: () => {},
     loginSuccess: (state, action) => {
-      localStorage.setItem('token', action.payload.token);
+      const { email, token, tokenExpiration } = action.payload;
+      localStorage.setItem('email', email);
+      localStorage.setItem('tokenExpiration', tokenExpiration);
+      localStorage.setItem('token', token);
+      configureApiHeaderAuthen(token);
+
       return { ...state, ...action.payload, error: false };
     },
     loginFailure: (state, action) => {
       state.error = action.payload;
     },
     loadFromStorage: (state, action) => {
+      configureApiHeaderAuthen(action.payload.token);
       return { ...state, ...action.payload };
     },
     logOut: (state, action) => {
+      localStorage.clear();
       state.token = '';
     }
   }
-  // extraReducers: {
-  //   [login.fulfilled]: (state, action) => {
-  //     return action.payload.data.login;
-  //   }
-  // }
 });
 
 export const { login, loadFromStorage, logOut } = userSlice.actions;

@@ -23,6 +23,7 @@ import GetFood from './pages/GetFood';
 
 //actions
 import { loadFromStorage } from './redux/slices/UserSlice';
+import { getAllFoods } from './redux/slices/FoodSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +35,10 @@ function App() {
     if (tokenFromLocal && token === '') {
       dispatch(loadFromStorage({ token: tokenFromLocal }));
     }
-  }, [token]);
+    if (tokenFromLocal && token !== '') {
+      dispatch(getAllFoods());
+    }
+  }, [token, dispatch, tokenFromLocal]);
 
   return (
     <div className='App'>

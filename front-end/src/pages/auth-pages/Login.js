@@ -14,7 +14,7 @@ const LoginPage = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    const res = await dispatch(login({ email, password }));
+    dispatch(login({ email, password }));
   };
 
   return (

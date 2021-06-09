@@ -1,17 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Card from '../components/Card/Card';
 
-const foods = [
-  { title: 'Cà tím', isMainFood: true },
-  { title: 'Cà pháo', isMainFood: false },
-  { title: 'Cà chua', isMainFood: true },
-  { title: 'Cà pháo', isMainFood: false },
-  { title: 'Cà chua', isMainFood: true }
-];
-
 const Foods = () => {
+  const foods = useSelector(state => state.foods.food);
   return (
     <React.Fragment>
       {foods.length === 0 ? (
@@ -31,8 +25,12 @@ const Foods = () => {
       ) : (
         <div className='row'>
           {foods.map(food => (
-            <div className='col-md-4 col-12 mb-4'>
-              <Card title={food.title} isMainFood={food.isMainFood} />
+            <div className='col-md-4 col-12 mb-4' key={food._id}>
+              <Card
+                id={food._id}
+                name={food.name}
+                isMainFood={food.isMainFood}
+              />
             </div>
           ))}
         </div>

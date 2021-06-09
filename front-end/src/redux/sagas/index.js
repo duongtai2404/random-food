@@ -1,30 +1,19 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { all } from 'redux-saga/effects';
 
-import graphqlApi from '../../api/api-grapql';
+import { watchLogin } from './user.saga';
+import {
+  watchGetAllFood,
+  watchAddFood,
+  watchDeleteFood,
+  watchUpdateFood
+} from './food.saga';
 
-function* loginUser(action) {
-  const { email, password } = action.payload;
-  const requestBody = {
-    query: `query{
-      login(email: "${email}", password: "${password}"){
-        userId,
-        token,
-        email,
-        tokenExpiration
-      }
-    }`
-  };
-
-  try {
-    const result = yield call(graphqlApi, requestBody);
-    yield put({ type: 'user/loginSuccess', payload: result.data.data.login });
-  } catch (err) {
-    yield put({ type: 'user/loginFailure', payload: true });
-  }
+export default function* rootSaga() {
+  yield all([
+    watchLogin(),
+    watchGetAllFood(),
+    watchAddFood(),
+    watchDeleteFood(),
+    watchUpdateFood()
+  ]);
 }
-
-function* watchLogin() {
-  yield takeLatest('user/login', loginUser);
-}
-
-export default watchLogin;

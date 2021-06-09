@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { selectAllFood } from '../redux/slices/FoodSlice';
 
 import './GetFood.css';
 
 import Card from '../components/Card/Card';
 
-const foods = [
-  { _id: 1, title: 'Cà', isMainFood: true },
-  { _id: 2, title: 'Cà2', isMainFood: true },
-  { _id: 3, title: 'Cà3', isMainFood: false },
-  { _id: 4, title: 'Cà4', isMainFood: false },
-  { _id: 5, title: 'Cà5', isMainFood: true },
-  { _id: 6, title: 'Cà6', isMainFood: false }
-];
-
 const GetFoodPage = () => {
+  const foods = useSelector(selectAllFood);
+
   const [numMainFood, changeNumMainFood] = useState(1);
   const [numExtraFood, changeNumExtraFood] = useState(1);
   const [listMainFood, changeListMainFood] = useState([]);
@@ -76,7 +72,7 @@ const GetFoodPage = () => {
             {listMainFood.map(food => (
               <div className='col-md-6 col-6 mb-3' key={food._id}>
                 <Card
-                  title={food.title}
+                  name={food.name}
                   isMainFood={food.isMainFood}
                   isGetFood='true'
                 />
@@ -85,7 +81,7 @@ const GetFoodPage = () => {
             {listExtraFood.map(food => (
               <div className='col-md-6 col-6 mb-3' key={food._id}>
                 <Card
-                  title={food.title}
+                  name={food.name}
                   isMainFood={food.isMainFood}
                   isGetFood='true'
                 />

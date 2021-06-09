@@ -13,4 +13,8 @@ const graphqlApi = body => {
   return instance.post('', body);
 };
 
+export const configureApiHeaderAuthen = token => {
+  instance.defaults.headers.common['Authorization'] = `Beare ${token}`;
+};
+
 export default graphqlApi;

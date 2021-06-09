@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import mySaga from '../sagas/index';
+import rootSaga from '../sagas/index';
 
 import foodSlice from '../slices/FoodSlice';
 import userSlice from '../slices/UserSlice';
@@ -16,6 +16,6 @@ const store = configureStore({
     getDefaultMiddleware().concat(sagaMiddleware)
 });
 
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(rootSaga);
 
 export default store;

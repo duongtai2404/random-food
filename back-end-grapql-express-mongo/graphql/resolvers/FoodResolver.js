@@ -27,6 +27,34 @@ const foodResolver = {
     } catch (error) {
       throw error;
     }
+  },
+  deleteFood: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+    try {
+      await Food.deleteOne({ _id: args._id });
+      return 'Delete successful';
+    } catch (err) {
+      throw new Error('Delete fail');
+    }
+  },
+  updateFood: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+
+    const { name, isMainFood } = args.foodInput;
+
+    try {
+      const food = await Food.findById(args._id);
+      food.name = name;
+      food.isMainFood = isMainFood;
+      await food.save();
+      return 'Update Success';
+    } catch (err) {
+      throw new Error('Update fail');
+    }
   }
 };
 

@@ -40,6 +40,8 @@ const schema = buildSchema(`
 
     type RootMutation{
         createFood(foodInput: FoodInput!): Food!
+        deleteFood(_id: String!): String!
+        updateFood(_id: String!, foodInput: FoodInput!): String!
         createUser(userInput: UserInput!): User
     }
 
