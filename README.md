@@ -7,6 +7,7 @@
 * [Features](#features)
 * [Setup](#setup)
 * [Project Status](#project-status)
+* [Demo](#demo)
 * [Contact](#contact)
 
 ## General Information
@@ -52,6 +53,9 @@ $ npm start
 
 ## Project Status
 Project is: _complete_
+
+## Demo
+You can see demo [here](https://drive.google.com/file/d/1b1nWugmVTg7JF6_8RdetUWjYeITLpHqk/view?usp=sharing).
 
 ## Contact
 Created by [@TaiDuong99](https://www.facebook.com/tai.duong.313/) - feel free to contact me!
